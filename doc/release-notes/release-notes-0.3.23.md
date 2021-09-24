@@ -1,7 +1,7 @@
-Win32, Linux, MacOSX and source releases for bitcoinrupee v0.3.23 have been uploaded to
-https://sourceforge.net/projects/bitcoinrupee/files/Bitcoin/bitcoinrupee-0.3.23/
+Win32, Linux, MacOSX and source releases for bitrupeerupee v0.3.23 have been uploaded to
+https://sourceforge.net/projects/bitrupeerupee/files/Bitrupee/bitrupeerupee-0.3.23/
 
-This is another quick bugfix release, trying to deal with the influx of new bitcoinrupee users.
+This is another quick bugfix release, trying to deal with the influx of new bitrupeerupee users.
 
 Main items of note:
 

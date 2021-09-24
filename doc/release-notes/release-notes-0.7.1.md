@@ -1,23 +1,23 @@
-Bitcoin version 0.7.1 is now available from:
-  http://sourceforge.net/projects/bitcoinrupee/files/Bitcoin/bitcoinrupee-0.7.1/
+Bitrupee version 0.7.1 is now available from:
+  http://sourceforge.net/projects/bitrupeerupee/files/Bitrupee/bitrupeerupee-0.7.1/
 
 This is a bug-fix minor release.
 
 Please report bugs using the issue tracker at github:
-  https://github.com/bitcoinrupee/bitcoinrupee/issues
+  https://github.com/bitrupeerupee/bitrupeerupee/issues
 
 Project source code is hosted at github; you can get
 source-only tarballs/zipballs directly from there:
-  https://github.com/bitcoinrupee/bitcoinrupee/tarball/v0.7.1  # .tar.gz
-  https://github.com/bitcoinrupee/bitcoinrupee/zipball/v0.7.1  # .zip
+  https://github.com/bitrupeerupee/bitrupeerupee/tarball/v0.7.1  # .tar.gz
+  https://github.com/bitrupeerupee/bitrupeerupee/zipball/v0.7.1  # .zip
 
 Ubuntu Linux users can use the "Personal Package Archive" (PPA)
 maintained by Matt Corallo to automatically keep 
 up-to-date.  Just type:
-  sudo apt-add-repository ppa:bitcoinrupee/bitcoinrupee
+  sudo apt-add-repository ppa:bitrupeerupee/bitrupeerupee
   sudo apt-get update
-in your terminal, then install the bitcoinrupee-qt package:
-  sudo apt-get install bitcoinrupee-qt
+in your terminal, then install the bitrupeerupee-qt package:
+  sudo apt-get install bitrupeerupee-qt
 
 KNOWN ISSUES
 ------------
@@ -30,7 +30,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait
 until it has completely shut down (which might take a few minutes for older
 versions), then run the installer (on Windows) or just copy over
-/Applications/Bitcoin-Qt (on Mac) or bitcoinrupeed/bitcoinrupee-qt (on Linux).
+/Applications/Bitrupee-Qt (on Mac) or bitrupeerupeed/bitrupeerupee-qt (on Linux).
 
 If you were running on Linux with a version that might have been compiled
 with a different version of Berkeley DB (for example, if you were using an
@@ -75,7 +75,7 @@ Dependency changes
 Bug fixes
 ---------
 
-* Clicking on a bitcoinrupee: URI on Windows should now launch Bitcoin-Qt properly.
+* Clicking on a bitrupeerupee: URI on Windows should now launch Bitrupee-Qt properly.
 
 * When running -testnet, use RPC port 126145 by default.
 

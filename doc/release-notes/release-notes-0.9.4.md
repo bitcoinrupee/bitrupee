@@ -1,39 +1,39 @@
-Bitcoin Core version 0.9.4 is now available from:
+Bitrupee Core version 0.9.4 is now available from:
 
-  https://bitcoinrupee.org/bin/0.9.4/
+  https://bitrupeerupee.org/bin/0.9.4/
 
 This is a new minor version release, bringing only bug fixes and updated
 translations. Upgrading to this release is recommended.
 
 Please report bugs using the issue tracker at github:
 
-  https://github.com/bitcoinrupee/bitcoinrupee/issues
+  https://github.com/bitrupeerupee/bitrupeerupee/issues
 
 How to Upgrade
 ===============
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over /Applications/Bitcoin-Qt (on Mac) or
-bitcoinrupeed/bitcoinrupee-qt (on Linux).
+installer (on Windows) or just copy over /Applications/Bitrupee-Qt (on Mac) or
+bitrupeerupeed/bitrupeerupee-qt (on Linux).
 
 OpenSSL Warning
 ================
 
 OpenSSL 1.0.0p / 1.0.1k was recently released and is being pushed out by
 various operating system maintainers. Review by Gregory Maxwell determined that
-this update is incompatible with the Bitcoin system and could lead to consensus
+this update is incompatible with the Bitrupee system and could lead to consensus
 forks.
 
-Bitcoin Core released binaries from https://bitcoinrupee.org are unaffected,
+Bitrupee Core released binaries from https://bitrupeerupee.org are unaffected,
 as are any built with the gitian deterministic build system.
 
 However, if you are running either
 
-- The Ubuntu PPA from https://launchpad.net/~bitcoinrupee/+archive/ubuntu/bitcoinrupee
-- A third-party or self-compiled Bitcoin Core
+- The Ubuntu PPA from https://launchpad.net/~bitrupeerupee/+archive/ubuntu/bitrupeerupee
+- A third-party or self-compiled Bitrupee Core
 
-upgrade to Bitcoin Core 0.9.4, which includes a workaround, **before** updating
+upgrade to Bitrupee Core 0.9.4, which includes a workaround, **before** updating
 OpenSSL.
 
 The incompatibility is due to the OpenSSL update changing the
@@ -92,4 +92,4 @@ Thanks to who contributed to this release, at least:
 - Sergio Demian Lerner
 - Wladimir J. van der Laan
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoinrupee/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitrupeerupee/).

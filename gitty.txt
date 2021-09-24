@@ -1,0 +1,22 @@
+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 
+
+sudo apt install make automake cmake curl g++-multilib libtool binutils-gold bsdmainutils pkg-config python3 patch
+
+cd ~/bitcoin/depends
+make
+./autogen.sh
+
+./configure --prefix=$PWD/depends/x86_64-pc-linux-gnu
+
+./configure CXXFLAGS="-O2"
+
+
+find ./ -type f -readable  -writable -exec sed -i 's/bitcoin/bitrupee/g' {} \;
+
+find ./ -type f -readable  -writable -exec sed -i 's/Bitcoin/Bitrupee/g' {} \;
+
+find ./ -type f -readable  -writable -exec sed -i 's/BitCoin/BitRupee/g' {} \;
+
+find ./ -type f -readable  -writable -exec sed -i 's/BitCoin/BitRupee/g' {} \;
+
+find ./ -type f -readable  -writable -exec sed -i 's/bitcoind/bitrupeed/g' {} \;

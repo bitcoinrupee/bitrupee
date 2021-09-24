@@ -1,0 +1,10 @@
+prefix=/home/amjad/bitrupee/depends/x86_64-pc-linux-gnu
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Bitrupee Core consensus library
+Description: Library for the BitRupee consensus protocol.
+Version: 21.99.0
+Libs: -L${libdir} -lbitrupeeconsensus
+Cflags: -I${includedir}

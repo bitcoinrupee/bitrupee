@@ -1,11 +1,11 @@
-Bitcoin-Qt version 0.8.3 is now available from:
-  http://sourceforge.net/projects/bitcoinrupee/files/Bitcoin/bitcoinrupee-0.8.3/
+Bitrupee-Qt version 0.8.3 is now available from:
+  http://sourceforge.net/projects/bitrupeerupee/files/Bitrupee/bitrupeerupee-0.8.3/
 
 This is a maintenance release to fix a denial-of-service attack that
 can cause nodes to crash.
 
 Please report bugs using the issue tracker at github:
-  https://github.com/bitcoinrupee/bitcoinrupee/issues
+  https://github.com/bitrupeerupee/bitrupeerupee/issues
 
 0.8.3 Release notes
 

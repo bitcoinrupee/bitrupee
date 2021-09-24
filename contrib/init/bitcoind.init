@@ -1,36 +1,36 @@
 #!/usr/bin/env bash
 #
-#  bitcoind The bitcoin core server.
+#  bitrupeed The bitrupee core server.
 #
 #
 # chkconfig: 345 80 20
-# description: bitcoind
-# processname: bitcoind
+# description: bitrupeed
+# processname: bitrupeed
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/bitcoind, see below
-if [ -f /etc/sysconfig/bitcoind ]; then
-        . /etc/sysconfig/bitcoind
+# you can override defaults in /etc/sysconfig/bitrupeed, see below
+if [ -f /etc/sysconfig/bitrupeed ]; then
+        . /etc/sysconfig/bitrupeed
 fi
 
 RETVAL=0
 
-prog=bitcoind
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/bitcoind
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/bitcoind}
+prog=bitrupeed
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/bitrupeed
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/bitrupeed}
 
-# bitcoind defaults to /usr/bin/bitcoind, override with BITCOIND_BIN
-bitcoind=${BITCOIND_BIN-/usr/bin/bitcoind}
+# bitrupeed defaults to /usr/bin/bitrupeed, override with BITCOIND_BIN
+bitrupeed=${BITCOIND_BIN-/usr/bin/bitrupeed}
 
-# bitcoind opts default to -disablewallet, override with BITCOIND_OPTS
-bitcoind_opts=${BITCOIND_OPTS--disablewallet}
+# bitrupeed opts default to -disablewallet, override with BITCOIND_OPTS
+bitrupeed_opts=${BITCOIND_OPTS--disablewallet}
 
 start() {
     echo -n $"Starting $prog: "
-    daemon $DAEMONOPTS $bitcoind $bitcoind_opts
+    daemon $DAEMONOPTS $bitrupeed $bitrupeed_opts
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch $lockfile

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2020 The Bitcoin Core developers
+# Copyright (c) 2017-2020 The Bitrupee Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test bitcoin-cli"""
+"""Test bitrupee-cli"""
 
 from decimal import Decimal
 
 from test_framework.blocktools import COINBASE_MATURITY
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BitrupeeTestFramework
 from test_framework.util import (
     assert_equal,
     assert_greater_than_or_equal,
@@ -29,7 +29,7 @@ TOO_MANY_ARGS = 'error: too many arguments (maximum 2 for nblocks and maxtries)'
 WALLET_NOT_LOADED = 'Requested wallet does not exist or is not loaded'
 WALLET_NOT_SPECIFIED = 'Wallet file not specified'
 
-class TestBitcoinCli(BitcoinTestFramework):
+class TestBitrupeeCli(BitrupeeTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -43,7 +43,7 @@ class TestBitcoinCli(BitcoinTestFramework):
         """Main test logic"""
         self.nodes[0].generate(BLOCKS)
 
-        self.log.info("Compare responses from getblockchaininfo RPC and `bitcoin-cli getblockchaininfo`")
+        self.log.info("Compare responses from getblockchaininfo RPC and `bitrupee-cli getblockchaininfo`")
         cli_response = self.nodes[0].cli.getblockchaininfo()
         rpc_response = self.nodes[0].getblockchaininfo()
         assert_equal(cli_response, rpc_response)
@@ -90,7 +90,7 @@ class TestBitcoinCli(BitcoinTestFramework):
         assert_equal(cli_get_info['chain'], blockchain_info['chain'])
 
         if self.is_wallet_compiled():
-            self.log.info("Test -getinfo and bitcoin-cli getwalletinfo return expected wallet info")
+            self.log.info("Test -getinfo and bitrupee-cli getwalletinfo return expected wallet info")
             assert_equal(cli_get_info['balance'], BALANCE)
             assert 'balances' not in cli_get_info.keys()
             wallet_info = self.nodes[0].getwalletinfo()
@@ -159,7 +159,7 @@ class TestBitcoinCli(BitcoinTestFramework):
             assert 'balance' not in cli_get_info_keys
             assert 'balances' not in cli_get_info_keys
 
-            # Test bitcoin-cli -generate.
+            # Test bitrupee-cli -generate.
             n1 = 3
             n2 = 4
             w2.walletpassphrase(password, self.rpc_timeout)
@@ -200,7 +200,7 @@ class TestBitcoinCli(BitcoinTestFramework):
             assert_raises_rpc_error(-18, WALLET_NOT_LOADED, self.nodes[0].cli(rpcwallet3, '-generate', 0).echo)
             assert_raises_rpc_error(-18, WALLET_NOT_LOADED, self.nodes[0].cli(rpcwallet3, '-generate', 1, 2, 3).echo)
 
-            # Test bitcoin-cli -generate with -rpcwallet in multiwallet mode.
+            # Test bitrupee-cli -generate with -rpcwallet in multiwallet mode.
             self.nodes[0].loadwallet(wallets[2])
             n3 = 4
             n4 = 10
@@ -258,4 +258,4 @@ class TestBitcoinCli(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    TestBitcoinCli().main()
+    TestBitrupeeCli().main()

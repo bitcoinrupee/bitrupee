@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2020 The Bitcoin Core developers
+// Copyright (c) 2018-2020 The Bitrupee Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -248,7 +248,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://github.com/amjadshaheed/BitCoinRupee/issues"
+#define PACKAGE_BUGREPORT "https://github.com/amjadshaheed/BitRupeeRupee/issues"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "BitRupee Core"

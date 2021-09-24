@@ -1,16 +1,16 @@
-Bitcoin Core version 0.17.0.1 is now available from:
+Bitrupee Core version 0.17.0.1 is now available from:
 
-  <https://bitcoinrupeecore.org/bin/bitcoinrupee-core-0.17.0.1/>
+  <https://bitrupeerupeecore.org/bin/bitrupeerupee-core-0.17.0.1/>
 
 This release provides a minor bug fix for 0.17.0.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoinrupee/bitcoinrupee/issues>
+  <https://github.com/bitrupeerupee/bitrupeerupee/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoinrupeecore.org/en/list/announcements/join/>
+  <https://bitrupeerupeecore.org/en/list/announcements/join/>
 
 Notable changes
 ===============
