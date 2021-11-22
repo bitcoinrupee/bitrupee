@@ -262,9 +262,9 @@ Genesis Hash Merkle Root = e56954a683dd1ff91875e50004a4d4f80bec5272d6e41e9d2f64a
 
         chainTxData = ChainTxData{
             // Data from RPC: getchaintxstats 4096 0000000000000000000b9d2ec5a352ecba0592946514a92f14319dc2b367fc72
-            /* nTime    */ 1627293599,
-            /* nTxCount */ 0,
-            /* dTxRate  */ 100.0,
+            /* nTime    */ 1637594615,
+            /* nTxCount */ 155915,
+            /* dTxRate  */ 0.01684614195516797,
         };
     }
 };
