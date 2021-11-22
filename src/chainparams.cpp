@@ -156,9 +156,14 @@ public:
         //consensus.defaultAssumeValid = uint256S(0); // 654683
         //consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000001533efd8d716a517fe2c5008");
         //consensus.defaultAssumeValid = uint256S("0x0000000000000000000b9d2ec5a352ecba0592946514a92f14319dc2b367fc72"); // 654683
-        consensus.nMinimumChainWork = uint256S("0x");//consensus.powLimit;//
+        //consensus.nMinimumChainWork = uint256S("0x");//consensus.powLimit;//
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x0079914cade2125a07c5b2316ec312c81089ed65cda34fa74b1cf4bc3b9c751b"); //1353397
+        //consensus.defaultAssumeValid = uint256S("0x0079914cade2125a07c5b2316ec312c81089ed65cda34fa74b1cf4bc3b9c751b"); //1353397
+
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000206dea82dd02ba");//consensus.powLimit;//
+        // By default assume that the signatures in ancestors of this block are valid.
+        consensus.defaultAssumeValid = uint256S("0x00000000084ec4824ced279ae9b24870eadfffa7ebc7e8ccc00ec4a3a5d7f255"); //1353397
+
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -191,8 +196,8 @@ Genesis Hash = 0079914cade2125a07c5b2316ec312c81089ed65cda34fa74b1cf4bc3b9c751b
 Genesis Hash Merkle Root = e56954a683dd1ff91875e50004a4d4f80bec5272d6e41e9d2f64a609318e8014
 Genesis Hash Merkle Root = e56954a683dd1ff91875e50004a4d4f80bec5272d6e41e9d2f64a609318e8014
 */
-        printf("Main genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-	    printf("Main genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+  //      printf("Main genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+//	    printf("Main genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
         // if (true && genesis.GetHash() != hashGenesisBlock)
         // {
         //     printf("recalculating params for mainnet.\n");
@@ -246,6 +251,7 @@ Genesis Hash Merkle Root = e56954a683dd1ff91875e50004a4d4f80bec5272d6e41e9d2f64a
         checkpointData = {
             {
                  {  0, uint256S("0x0079914cade2125a07c5b2316ec312c81089ed65cda34fa74b1cf4bc3b9c751b")},
+                  {  151972, uint256S("00000000084ec4824ced279ae9b24870eadfffa7ebc7e8ccc00ec4a3a5d7f255")}
                 
             }
         };
