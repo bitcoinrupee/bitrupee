@@ -21,43 +21,7 @@
 const arith_uint256 maxUint = UintToArith256(
         uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
 
-static void MineGenesis(CBlockHeader &genesisBlock, const uint256 &powLimit, bool noProduction) {
-    if (noProduction) genesisBlock.nTime = std::time(0);
-    genesisBlock.nNonce = 0;
 
-    printf("NOTE: Genesis nTime = %u \n", genesisBlock.nTime);
-    printf("WARN: Genesis nNonce (BLANK!) = %u \n", genesisBlock.nNonce);
-
-    arith_uint256 besthash;
-    memset(&besthash, 0xFF, 32);
-    arith_uint256 hashTarget = UintToArith256(powLimit);
-    printf("Target: %s\n", hashTarget.GetHex().c_str());
-    arith_uint256 newhash = UintToArith256(genesisBlock.GetHash());
-    while (newhash > hashTarget) {
-        genesisBlock.nNonce++;
-        if (genesisBlock.nNonce == 0) {
-            printf("NONCE WRAPPED, incrementing time\n");
-            ++genesisBlock.nTime;
-        }
-        // If nothing found after trying for a while, print status
-        if ((genesisBlock.nNonce & 0xffff) == 0)
-            printf("nonce %08X: hash = %s \r",
-                   genesisBlock.nNonce, newhash.ToString().c_str(),
-                   hashTarget.ToString().c_str());
-
-        if (newhash < besthash) {
-            besthash = newhash;
-            printf("New best: %s\n", newhash.GetHex().c_str());
-        }
-        newhash = UintToArith256(genesisBlock.GetHash());
-    }
-    printf("\nGenesis nTime = %u \n", genesisBlock.nTime);
-    printf("Genesis nNonce = %u \n", genesisBlock.nNonce);
-    printf("Genesis nBits: %08x\n", genesisBlock.nBits);
-    printf("Genesis Hash = %s\n", newhash.ToString().c_str());
-    printf("Genesis Hash Merkle Root = %s\n", genesisBlock.hashMerkleRoot.ToString().c_str());
-    printf("Genesis Hash Merkle Root = %s\n", genesisBlock.hashMerkleRoot.ToString().c_str());
-}
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -85,11 +49,6 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  * transaction cannot be spent since it did not originally exist in the
  * database.
  *
- * CBlock(hash=000000000019d6, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=4a5e1e, nTime=1231006505, nBits=1d00ffff, nNonce=2083236893, vtx=1)
- *   CTransaction(hash=4a5e1e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
- *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73)
- *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
- *   vMerkleTree: 4a5e1e
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -97,26 +56,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
     const CScript genesisOutputScript = CScript() << ParseHex("0401575724f525ae8f3c84691e7961e09c3a492ba0ec828fda41343fe287b92ad0d75ac53c98e234f9f90b251116d52770878167b14e806462c0ecbc86ae4b2b1a") << OP_CHECKSIG;// "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
-// static  void MineGenesisBlock(CBlock &genesis)
-//  {
-//     arith_uint256 best = arith_uint256();
-//     int n=0;
-//     arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
-//     while (UintToArith256(genesis.GetHash()) > hashTarget) {
-//         arith_uint256 c=UintToArith256(genesis.GetHash());
-//         if(c < best || n==0)
-//         {
-//             best = c;
-//             n=1;
-//             printf("%s %s %s\n",genesis.GetHash().GetHex().c_str(),hashTarget.GetHex().c_str(),
-//             best.GetHex().c_str());
-//         }
-//         ++genesis.nNonce;
-//         if (genesis.nNonce == 0) { ++genesis.nTime; }
-//     }
-//  //printf("HASH IS: %s\n", UintToArith256(genesis.GetHash()).ToString().c_str());
-//     printf("Converting genesis hash to string: %s\n",genesis.ToString().c_str());
-//  }
+
 /**
  * Main network on which people trade goods and services.
  */
@@ -152,13 +92,6 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartTime = 0; // April 24th, 2021
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT; // August 11th, 2021
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].min_activation_height = 0; // Approximately November 12th, 2021
-        //consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000001");
-        //consensus.defaultAssumeValid = uint256S(0); // 654683
-        //consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000001533efd8d716a517fe2c5008");
-        //consensus.defaultAssumeValid = uint256S("0x0000000000000000000b9d2ec5a352ecba0592946514a92f14319dc2b367fc72"); // 654683
-        //consensus.nMinimumChainWork = uint256S("0x");//consensus.powLimit;//
-        // By default assume that the signatures in ancestors of this block are valid.
-        //consensus.defaultAssumeValid = uint256S("0x0079914cade2125a07c5b2316ec312c81089ed65cda34fa74b1cf4bc3b9c751b"); //1353397
 
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000206dea82dd02ba");//consensus.powLimit;//
         // By default assume that the signatures in ancestors of this block are valid.
@@ -168,11 +101,7 @@ public:
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
-         */
-        // pchMessageStart[0] = 0xf9;
-        // pchMessageStart[1] = 0xbe;
-        // pchMessageStart[2] = 0xb4;
-        // pchMessageStart[3] = 0xd9;
+         */       
         
         pchMessageStart[0] = 0xf2;
         pchMessageStart[1] = 0xb6;
@@ -187,31 +116,7 @@ public:
 
         genesis = CreateGenesisBlock(1627300799, 7, 0x1d00ffff, 1, 100 * COIN);
          consensus.hashGenesisBlock = genesis.GetHash();   
-       // MineGenesis(genesis, consensus.powLimit, false);
-/*
-Genesis nTime = 1627300799
-Genesis nNonce = 7
-Genesis nBits: 1d00ffff
-Genesis Hash = 0079914cade2125a07c5b2316ec312c81089ed65cda34fa74b1cf4bc3b9c751b
-Genesis Hash Merkle Root = e56954a683dd1ff91875e50004a4d4f80bec5272d6e41e9d2f64a609318e8014
-Genesis Hash Merkle Root = e56954a683dd1ff91875e50004a4d4f80bec5272d6e41e9d2f64a609318e8014
-*/
-  //      printf("Main genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-//	    printf("Main genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        // if (true && genesis.GetHash() != hashGenesisBlock)
-        // {
-        //     printf("recalculating params for mainnet.\n");
-        //     //printf("old mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
-        //     printf("old mainnet genesis hash:  %s\n", hashGenesisBlock.ToString().c_str());
-        //     // deliberately empty for loop finds nonce value.
-        //     for(genesis.nNonce == 0; genesis.GetHash() > bnProofOfWorkLimit; genesis.nNonce++){ } 
-        //     printf("new mainnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        //     //printf("new mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
-        //     printf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
-        // }
 
-     
-       // MineGenesis(genesis,consensus.powLimit,false);
 
         assert(consensus.hashGenesisBlock == uint256S("0x0079914cade2125a07c5b2316ec312c81089ed65cda34fa74b1cf4bc3b9c751b"));
         assert(genesis.hashMerkleRoot == uint256S("0xe56954a683dd1ff91875e50004a4d4f80bec5272d6e41e9d2f64a609318e8014"));
@@ -318,10 +223,7 @@ public:
         m_assumed_chain_state_size = 2;
 
         genesis = CreateGenesisBlock(1627289141, 464, 0x1d00ffff, 1, 100 * COIN);        
-        consensus.hashGenesisBlock = genesis.GetHash();       
-        MineGenesis(genesis, consensus.powLimit, true);
-        //printf("CTestNet genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-	    //printf("CTestNet genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        consensus.hashGenesisBlock = genesis.GetHash();              
 
 
         assert(consensus.hashGenesisBlock == uint256S("0x000e8cde5fd622388da9ef5eba639d24af7177a6fd4d50d9a6272ca467868903"));
@@ -455,12 +357,10 @@ public:
 
         nDefaultPort = 36146;
         nPruneAfterHeight = 1000;
-//genesis = CreateGenesisBlock(1231006505, 2083236893, 0x1d00ffff, 1, 50 * COIN);
         genesis = CreateGenesisBlock(1598918400, 52613770, 0x1d00ffff, 1, 1000000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        printf("SigNet genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-	    printf("SigNet genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        
 
         assert(consensus.hashGenesisBlock == uint256S("0x4fefffc66f76d44493166ac735a6694253020bd7d0ea36ed778384bf6891b70e"));
         assert(genesis.hashMerkleRoot == uint256S("0xd93f7b0cc2fd5fc9706c7a6e343f3f11fc753381177b513aeaaa69c12c9279ff"));
@@ -532,14 +432,12 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateActivationParametersFromArgs(args);
-//genesis = CreateGenesisBlock(1231006505, 2083236893, 0x1d00ffff, 1, 50 * COIN);
         genesis = CreateGenesisBlock(1296688602, 2, 0x1d00ffff, 1, 0x1d00ffff * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         printf("CRegTest genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
 	    printf("CRegTest genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-//CRegTest genesis.GetHash = a2b1947180cc18ab7607e33828af0204f6880d43b0bf188f3959bf290b69d424
-//CRegTest genesis.hashMerkleRoot = 75cee1a351395a645c3949cb8ad780583b6cd3f94a770d14b787be0671471b2b
+
         assert(consensus.hashGenesisBlock == uint256S("0xa2b1947180cc18ab7607e33828af0204f6880d43b0bf188f3959bf290b69d424"));
         assert(genesis.hashMerkleRoot == uint256S("0x75cee1a351395a645c3949cb8ad780583b6cd3f94a770d14b787be0671471b2b"));
 
