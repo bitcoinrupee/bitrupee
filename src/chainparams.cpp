@@ -93,9 +93,9 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT; // August 11th, 2021
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].min_activation_height = 0; // Approximately November 12th, 2021
 
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000206dea82dd02ba");//consensus.powLimit;//
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000020edb311a932a5");//consensus.powLimit;//
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000084ec4824ced279ae9b24870eadfffa7ebc7e8ccc00ec4a3a5d7f255"); //1353397
+        consensus.defaultAssumeValid = uint256S("0x000000001f2f55bb24dbefbd0015e403c4a5fcd09269398f92db5c5353d260b9"); //1353397
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -115,7 +115,7 @@ public:
       
 
         genesis = CreateGenesisBlock(1627300799, 7, 0x1d00ffff, 1, 100 * COIN);
-         consensus.hashGenesisBlock = genesis.GetHash();   
+        consensus.hashGenesisBlock = genesis.GetHash();   
 
 
         assert(consensus.hashGenesisBlock == uint256S("0x0079914cade2125a07c5b2316ec312c81089ed65cda34fa74b1cf4bc3b9c751b"));
@@ -167,9 +167,9 @@ public:
 
         chainTxData = ChainTxData{
             // Data from RPC: getchaintxstats 4096 0000000000000000000b9d2ec5a352ecba0592946514a92f14319dc2b367fc72
-            /* nTime    */ 1637594615,
-            /* nTxCount */ 155915,
-            /* dTxRate  */ 0.01684614195516797,
+            /* nTime    */ 1638872919,
+            /* nTxCount */ 170368,
+            /* dTxRate  */ 0.01452155537292033,
         };
     }
 };
